@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+/* eslint-disable default-case */
 import './App.css';
+import './estilo.css';
+import Navbar from "./components/NavBar";
+import Colecciones from "./pages/colecciones";
+import Contacto from "./pages/contacto";
+import Eventos from "./pages/eventos";
+import Nosotros from "./pages/nosotros";
+import Inicio from "./pages/inicio";
+import Carrito from './pages/carrito';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 
 function App() {
+  let Component
+  switch (window.location.pathname) {
+    case "/":
+      Component = Inicio
+      break
+    case "/colecciones":
+      Component = Colecciones
+      break
+    case "/contacto":
+      Component = Contacto
+      break
+    case "/eventos":
+      Component = Eventos
+      break
+    case "/nosotros":
+      Component = Nosotros
+      break
+    case "/carrito":
+      Component = Carrito
+      break
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  <>
+    <Navbar/>
+    <div className="container">
+    <ItemListContainer greeting="Bienvenidos a la tienda argentina de Pokemon TCG!" />
     </div>
-  );
+  </>
+  )
 }
 
 export default App;

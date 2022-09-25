@@ -1,5 +1,5 @@
-import React from 'React'
-import CartWidget from './CartWidget'
+import React from 'React';
+import CartWidget from '../CartWidget';
 
 function NavBar() {
     return (
@@ -15,4 +15,4 @@ function NavBar() {
     )
 }
 
-export default NavBar
+export default NavBar;
