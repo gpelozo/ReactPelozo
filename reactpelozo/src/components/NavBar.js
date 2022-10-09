@@ -1,27 +1,28 @@
+import {Link, useMatch, useResolvedPath} from "react-router-dom"
 import CartWidget from "./CartWidget"
 
 export default function Navbar () {
-    const path = window.location.pathname
     return <nav className="nav">
-        <a href="/" className="site-title">
+        <Link to="/" className="site-title">
             Tienda de Pokemon TCG
-        </a>
+        </Link>
         <ul>
-            <CustomLink href="/">Inicio</CustomLink>
-            <CustomLink href="/eventos">Eventos</CustomLink>
-            <CustomLink href="/nosotros">Nosotros</CustomLink>
-            <CustomLink href="/contacto">Contacto</CustomLink>
-            <CustomLink href="/colecciones">Colecciones</CustomLink>
-            <CustomLink href="/carrito"><CartWidget/></CustomLink>
+            <CustomLink to="/">Inicio</CustomLink>
+            <CustomLink to="/eventos">Eventos</CustomLink>
+            <CustomLink to="/nosotros">Nosotros</CustomLink>
+            <CustomLink to="/contacto">Contacto</CustomLink>
+            <CustomLink to="/colecciones">Colecciones</CustomLink>
+            <CustomLink to="/carrito"><CartWidget/></CustomLink>
         </ul>
     </nav>
 }
 
-function CustomLink({href, children, ...props}) {
-    const path = window.location.pathname
+function CustomLink({to, children, ...props}) {
+    const resolvedPath = useResolvedPath(to)
+    const isActive = useMatch({path: resolvedPath.pathname, end:true})
     return (
-        <li className={path === href ? "active" : ""}>
-            <a href={href}{...props}>{children}</a>
+        <li className={isActive ? "active" : ""}>
+            <Link to={to}{...props}>{children}</Link>
         </li>
     )
 }

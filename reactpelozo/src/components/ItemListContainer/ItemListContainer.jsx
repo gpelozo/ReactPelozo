@@ -7,7 +7,6 @@ import "./itemlistcontainer.css";
 
 //Componente
 function ItemListContainer(props) {
-    let miEstilos = {backgroundColor: "lightblue"};
     return (
         <>
         <h1>{props.greeting}</h1>
