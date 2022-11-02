@@ -21,18 +21,23 @@ function App() {
   const [pokeList, setPokeList] = useState([])
 useEffect(
   ()=> {
-  fetch("https://api.pokemontcg.io/v2/cards", {
+  fetch("https://api.pokemontcg.io/v2/cards?orderBy=number", {
     headers: {
       "X-Api-Key": "b394c2d8-a118-4470-a00c-9a9b729c28db"
     }
-  }).then((respuesta)=>{
-    return respuesta.json();
+  }).then((pokemon)=>{
+    return pokemon.json();
   }).then((jsonData) => {
     setPokeList(jsonData.results);
     console.log(jsonData.results);
   })
   }, []
 )
+
+pokemon.card.all()
+  .then((cards) => {
+      console.log(cards[0].name) // "Blastoise"
+  })
 
   return (
   <>
@@ -56,7 +61,7 @@ useEffect(
       <div className="pokegallery">
       {
           pokeList.map( (pokemon) => {
-            return <div className="card">
+            return <div key={pokemon.name} className="card">
               <img src="/img.png" alt="pokemon" />
               <div >
                 <h5>{pokemon.name}</h5>
